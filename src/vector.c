@@ -36,6 +36,7 @@ void push_back(vector *v, const void *source) {
             v->argType->assign((void *) (dest_ptr + width * i), (void *) (ptr + width * i));
         }
         v->argType->assign((void *) (dest_ptr + width * v->size), source);
+        free(v->start);
         v->start = new_start;
         ++v->size;
     }
