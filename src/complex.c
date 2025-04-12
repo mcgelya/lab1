@@ -3,27 +3,36 @@
 #include <assert.h>
 #include <stdio.h>
 
-void assignComplex(void *destination, const void *source) {
+void assignComplex(void *destination, const void *source, const TypeInfo *argType) {
     Complex *destination_comp = (Complex *) destination;
     const Complex *source_comp = (const Complex *) source;
-
-    assert(destination_comp->argType == source_comp->argType);
-    const TypeInfo *type = destination_comp->argType;
-    type->assign(destination_comp->re, source_comp->re);
-    type->assign(destination_comp->im, source_comp->im);
+    argType->assign(destination_comp->re, source_comp->re);
+    argType->assign(destination_comp->im, source_comp->im);
 }
 
-size_t getSizeComplex(const TypeInfo *argType) {
-    return argType->getSize() * 2;
+size_t getSizeComplex() {
+    return sizeof(Complex);
 }
 
-void *allocComplex(const TypeInfo *argType) {
-    return malloc(getSizeComplex(argType));
+void allocComplexComponents(void *arg, const TypeInfo *argType) {
+    Complex *arg_comp = (Complex *) arg;
+    arg_comp->re = argType->alloc(1);
+    arg_comp->im = argType->alloc(1);
 }
 
-void printComplex(const void *arg) {
+void *allocComplex(size_t n, const TypeInfo *argType) {
+    size_t width = getSizeComplex();
+    void *comp = malloc(width * n);
+    char *ptr = (char *) comp;
+    for (size_t i = 0; i < n; ++i) {
+        allocComplexComponents((void *) (ptr + width * i), argType);
+    }
+    return comp;
+}
+
+void printComplex(const void *arg, const TypeInfo *argType) {
     const Complex *arg_comp = (const Complex *) arg;
-    arg_comp->argType->print(arg_comp->re);
+    argType->print(arg_comp->re);
     printf(" + i*");
-    arg_comp->argType->print(arg_comp->im);
+    argType->print(arg_comp->im);
 }

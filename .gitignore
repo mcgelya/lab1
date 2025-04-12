@@ -1,4 +1,5 @@
 .vscode/
 out/
+src/bin/
 .clang-format
 .clangd

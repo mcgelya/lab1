@@ -12,8 +12,8 @@ size_t getSizeInteger() {
     return sizeof(Integer);
 }
 
-void *allocInteger() {
-    return malloc(getSizeInteger());
+void *allocInteger(size_t n) {
+    return malloc(getSizeInteger() * n);
 }
 
 void printInteger(const void *arg) {

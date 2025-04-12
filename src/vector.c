@@ -4,7 +4,7 @@
 
 vector *emptyVector(const TypeInfo *argType) {
     vector *res = malloc(sizeof(vector));
-    res->start = malloc(argType->getSize());
+    res->start = argType->alloc(1);
     res->size = 0;
     res->capacity = 1;
     res->argType = argType;
@@ -13,7 +13,7 @@ vector *emptyVector(const TypeInfo *argType) {
 
 vector *nElementsVector(size_t n, const TypeInfo *argType) {
     vector *res = malloc(sizeof(vector));
-    res->start = malloc(argType->getSize() * n);
+    res->start = argType->alloc(n);
     res->size = n;
     res->capacity = n;
     res->argType = argType;
@@ -29,7 +29,7 @@ void push_back(vector *v, const void *source) {
     } else {
         assert(v->size == v->capacity);
         v->capacity *= 2;
-        void *new_start = malloc(v->argType->getSize() * v->capacity);
+        void *new_start = v->argType->alloc(v->capacity);
         char *ptr = (char *) v->start;
         char *dest_ptr = (char *) new_start;
         for (size_t i = 0; i < v->size; ++i) {
