@@ -16,6 +16,12 @@ void *allocInteger(size_t n) {
     return malloc(getSizeInteger() * n);
 }
 
+bool eqOperatorInteger(const void *a, const void *b) {
+    const Integer *a_int = (const Integer *) a;
+    const Integer *b_int = (const Integer *) b;
+    return a_int->value == b_int->value;
+}
+
 void printInteger(const void *arg) {
     const Integer *arg_int = (const Integer *) arg;
     printf("%d", arg_int->value);
@@ -27,6 +33,7 @@ const TypeInfo *getIntegerTypeInfo() {
     if (intType == NULL) {
         intType = malloc(sizeof(TypeInfo));
         intType->assign = assignInteger;
+        intType->eqOperator = eqOperatorInteger;
         intType->alloc = allocInteger;
         intType->getSize = getSizeInteger;
         intType->print = printInteger;
