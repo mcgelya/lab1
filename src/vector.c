@@ -49,6 +49,12 @@ ErrorInfo *push_back(vector *v, const void *source) {
         err->msg = "Error: Null pointer to vector.";
         return err;
     }
+    if (source == NULL) {
+        ErrorInfo *err = malloc(sizeof(ErrorInfo));
+        err->code = ERROR_NULL_POINTER;
+        err->msg = "Error: Null pointer to element.";
+        return err;
+    }
     size_t width = v->argType->getSize();
     if (v->size < v->capacity) {
         char *ptr = (char *) v->start;
@@ -118,6 +124,12 @@ ErrorInfo *assignElement(vector *v, size_t i, const void *source) {
         ErrorInfo *err = malloc(sizeof(ErrorInfo));
         err->code = ERROR_NULL_POINTER;
         err->msg = "Error: Null pointer to vector.";
+        return err;
+    }
+    if (source == NULL) {
+        ErrorInfo *err = malloc(sizeof(ErrorInfo));
+        err->code = ERROR_NULL_POINTER;
+        err->msg = "Error: Null pointer to element.";
         return err;
     }
     if (i >= v->size) {
