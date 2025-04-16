@@ -16,7 +16,7 @@ void printComplexOnInteger(const void *arg) {
     printComplex(arg, getIntegerTypeInfo());
 }
 
-const TypeInfo *getComplexIntegerTypeInfo() {
+const TypeInfo *getComplexOnIntegerTypeInfo() {
     if (complexOnIntegerType == NULL) {
         complexOnIntegerType = malloc(sizeof(TypeInfo));
         complexOnIntegerType->assign = assignComplexOnInteger;

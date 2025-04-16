@@ -1,5 +1,6 @@
 #pragma once
 
+#include "error_info.h"
 #include "type_info.h"
 #include <stdbool.h>
 
@@ -11,23 +12,21 @@ typedef struct vector {
     const TypeInfo *argType;
 } vector;
 
-vector *emptyVector(const TypeInfo *argType);
-vector *nElementsVector(size_t n, const TypeInfo *argType);
+ResultInfo *emptyVector(const TypeInfo *argType);
+ResultInfo *nElementsVector(size_t n, const TypeInfo *argType);
 
-void push_back(vector *v, const void *source);
-void pop_back(vector *v);
+ErrorInfo *push_back(vector *v, const void *source);
+ErrorInfo *pop_back(vector *v);
 
-const void *getElement(vector *v, size_t i);
+ResultInfo *getElement(vector *v, size_t i);
 
-void assignElement(vector *v, size_t i, const void *source);
+ErrorInfo *assignElement(vector *v, size_t i, const void *source);
 
-size_t getLength(vector *v);
-
-vector *map(const vector *v, UnaryOperator func);
+ResultInfo *map(const vector *v, UnaryOperator func);
 
 typedef bool (*Predicate)(const void *arg);
-vector *where(const vector *v, Predicate pred);
+ResultInfo *where(const vector *v, Predicate pred);
 
-vector *concatVectors(const vector *first, const vector *second);
+ResultInfo *concatVectors(const vector *first, const vector *second);
 
-void print(const vector *v);
+ErrorInfo *print(const vector *v);
