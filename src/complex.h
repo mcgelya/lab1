@@ -14,6 +14,6 @@ size_t getSizeComplex();
 void allocComplexComponents(void *arg, const TypeInfo *argType);
 void *allocComplex(size_t n, const TypeInfo *argType);
 
-bool eqOperComplex(const void *a, const void *b, const TypeInfo *argType);
+bool eqOperatorComplex(const void *a, const void *b, const TypeInfo *argType);
 
 void printComplex(const void *arg, const TypeInfo *argType);

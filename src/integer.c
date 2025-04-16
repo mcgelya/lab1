@@ -27,16 +27,16 @@ void printInteger(const void *arg) {
     printf("%d", arg_int->value);
 }
 
-static struct TypeInfo *intType = NULL;
+static struct TypeInfo *integerType = NULL;
 
 const TypeInfo *getIntegerTypeInfo() {
-    if (intType == NULL) {
-        intType = malloc(sizeof(TypeInfo));
-        intType->assign = assignInteger;
-        intType->eqOperator = eqOperatorInteger;
-        intType->alloc = allocInteger;
-        intType->getSize = getSizeInteger;
-        intType->print = printInteger;
+    if (integerType == NULL) {
+        integerType = malloc(sizeof(TypeInfo));
+        integerType->assign = assignInteger;
+        integerType->eqOperator = eqOperatorInteger;
+        integerType->alloc = allocInteger;
+        integerType->getSize = getSizeInteger;
+        integerType->print = printInteger;
     }
-    return intType;
+    return integerType;
 }

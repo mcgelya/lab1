@@ -154,6 +154,14 @@ ResultInfo *map(const vector *v, UnaryOperator func) {
         res->error = err;
         return res;
     }
+    if (func == NULL) {
+        ErrorInfo *err = malloc(sizeof(ErrorInfo));
+        err->code = ERROR_NULL_POINTER;
+        err->msg = "Error: Null pointer to function.";
+        res->result = NULL;
+        res->error = err;
+        return res;
+    }
     vector *vec = (vector *) nElementsVector(v->size, v->argType)->result;
     size_t width = v->argType->getSize();
     char *ptr = (char *) v->start;
@@ -172,6 +180,14 @@ ResultInfo *where(const vector *v, Predicate pred) {
         ErrorInfo *err = malloc(sizeof(ErrorInfo));
         err->code = ERROR_NULL_POINTER;
         err->msg = "Error: Null pointer to vector.";
+        res->result = NULL;
+        res->error = err;
+        return res;
+    }
+    if (pred == NULL) {
+        ErrorInfo *err = malloc(sizeof(ErrorInfo));
+        err->code = ERROR_NULL_POINTER;
+        err->msg = "Error: Null pointer to function.";
         res->result = NULL;
         res->error = err;
         return res;

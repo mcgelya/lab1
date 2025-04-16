@@ -19,7 +19,6 @@ ErrorInfo *push_back(vector *v, const void *source);
 ErrorInfo *pop_back(vector *v);
 
 ResultInfo *getElement(vector *v, size_t i);
-
 ErrorInfo *assignElement(vector *v, size_t i, const void *source);
 
 ResultInfo *map(const vector *v, UnaryOperator func);

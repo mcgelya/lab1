@@ -30,7 +30,7 @@ void *allocComplex(size_t n, const TypeInfo *argType) {
     return comp;
 }
 
-bool eqOperComplex(const void *a, const void *b, const TypeInfo *argType) {
+bool eqOperatorComplex(const void *a, const void *b, const TypeInfo *argType) {
     const Complex *a_comp = (const Complex *) a;
     const Complex *b_comp = (const Complex *) b;
     return argType->eqOperator(a_comp->re, b_comp->re) && argType->eqOperator(a_comp->im, b_comp->im);

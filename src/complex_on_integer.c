@@ -12,6 +12,10 @@ void *allocComplexOnInteger(size_t n) {
     return allocComplex(n, getIntegerTypeInfo());
 }
 
+bool eqOperatorComplexOnInteger(const void *a, const void *b) {
+    return eqOperatorComplex(a, b, getIntegerTypeInfo());
+}
+
 void printComplexOnInteger(const void *arg) {
     printComplex(arg, getIntegerTypeInfo());
 }
@@ -20,6 +24,7 @@ const TypeInfo *getComplexOnIntegerTypeInfo() {
     if (complexOnIntegerType == NULL) {
         complexOnIntegerType = malloc(sizeof(TypeInfo));
         complexOnIntegerType->assign = assignComplexOnInteger;
+        complexOnIntegerType->eqOperator = eqOperatorComplexOnInteger;
         complexOnIntegerType->alloc = allocComplexOnInteger;
         complexOnIntegerType->getSize = getSizeComplex;
         complexOnIntegerType->print = printComplexOnInteger;
