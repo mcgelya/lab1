@@ -2,13 +2,13 @@
 
 #include <stdbool.h>
 
-bool is_even(const void *arg);
+bool isEven(const void *arg);
 
-bool is_zero(const void *arg);
+bool isZero(const void *arg);
 
-bool is_re(const void *arg);
+bool isRe(const void *arg);
 
-bool is_im(const void *arg);
+bool isIm(const void *arg);
 
 void inc(void *dest, const void *source);
 

@@ -42,7 +42,7 @@ ResultInfo *nElementsVector(size_t n, const TypeInfo *argType) {
     return res;
 }
 
-ErrorInfo *push_back(vector *v, const void *source) {
+ErrorInfo *pushBack(vector *v, const void *source) {
     if (v == NULL) {
         ErrorInfo *err = malloc(sizeof(ErrorInfo));
         err->code = ERROR_NULL_POINTER;
@@ -77,7 +77,7 @@ ErrorInfo *push_back(vector *v, const void *source) {
     return getSuccessResult();
 }
 
-ErrorInfo *pop_back(vector *v) {
+ErrorInfo *popBack(vector *v) {
     if (v == NULL) {
         ErrorInfo *err = malloc(sizeof(ErrorInfo));
         err->code = ERROR_NULL_POINTER;
@@ -94,7 +94,7 @@ ErrorInfo *pop_back(vector *v) {
     return getSuccessResult();
 }
 
-ResultInfo *getElement(vector *v, size_t i) {
+ResultInfo *getElement(const vector *v, size_t i) {
     ResultInfo *res = malloc(sizeof(ResultInfo));
     if (v == NULL) {
         ErrorInfo *err = malloc(sizeof(ErrorInfo));
@@ -198,7 +198,7 @@ ResultInfo *where(const vector *v, Predicate pred) {
     for (size_t i = 0; i < v->size; ++i) {
         const void *cur = (const void *) (ptr + width * i);
         if (pred(cur)) {
-            push_back(vec, cur);
+            pushBack(vec, cur);
         }
     }
     res->result = (void *) vec;
@@ -229,12 +229,12 @@ ResultInfo *concatVectors(const vector *first, const vector *second) {
     char *ptr_a = (char *) first->start;
     for (size_t i = 0; i < first->size; ++i) {
         const void *cur = (const void *) (ptr_a + width * i);
-        push_back(vec, cur);
+        pushBack(vec, cur);
     }
     char *ptr_b = (char *) second->start;
     for (size_t i = 0; i < second->size; ++i) {
         const void *cur = (const void *) (ptr_b + width * i);
-        push_back(vec, cur);
+        pushBack(vec, cur);
     }
     res->result = (void *) vec;
     res->error = getSuccessResult();

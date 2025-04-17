@@ -15,10 +15,10 @@ typedef struct vector {
 ResultInfo *emptyVector(const TypeInfo *argType);
 ResultInfo *nElementsVector(size_t n, const TypeInfo *argType);
 
-ErrorInfo *push_back(vector *v, const void *source);
-ErrorInfo *pop_back(vector *v);
+ErrorInfo *pushBack(vector *v, const void *source);
+ErrorInfo *popBack(vector *v);
 
-ResultInfo *getElement(vector *v, size_t i);
+ResultInfo *getElement(const vector *v, size_t i);
 ErrorInfo *assignElement(vector *v, size_t i, const void *source);
 
 ResultInfo *map(const vector *v, UnaryOperator func);

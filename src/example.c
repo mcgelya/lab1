@@ -2,24 +2,24 @@
 #include "complex.h"
 #include "integer.h"
 
-bool is_even(const void *arg) {
+bool isEven(const void *arg) {
     const Integer *val = (const Integer *) arg;
     return val->value % 2 == 0;
 }
 
-bool is_zero(const void *arg) {
+bool isZero(const void *arg) {
     const Integer *val = (const Integer *) arg;
     return val->value == 0;
 }
 
-bool is_re(const void *arg) {
+bool isRe(const void *arg) {
     const Complex *val = (const Complex *) arg;
-    return is_zero(val->im);
+    return isZero(val->im);
 }
 
-bool is_im(const void *arg) {
+bool isIm(const void *arg) {
     const Complex *val = (const Complex *) arg;
-    return is_zero(val->re);
+    return isZero(val->re);
 }
 
 void inc(void *dest, const void *source) {

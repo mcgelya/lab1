@@ -17,9 +17,9 @@ int main(int argc, char *argv[]) {
             if (c == '+') {
                 Integer x;
                 scanf("%d", &x.value);
-                push_back(v, &x);
+                pushBack(v, &x);
             } else if (c == '-') {
-                ErrorInfo *err = pop_back(v);
+                ErrorInfo *err = popBack(v);
                 if (err != getSuccessResult()) {
                     printf("%s\n", err->msg);
                     return 0;
@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
         printf("\nGreat! Here's your vector:\n");
         print(v);
 
-        vector *filtered = (vector *) where(v, is_even)->result;
+        vector *filtered = (vector *) where(v, isEven)->result;
         printf("\nFiltered to leave only even numbers:\n");
         print(filtered);
 
@@ -54,9 +54,9 @@ int main(int argc, char *argv[]) {
                 Complex *z = getComplexOnIntegerTypeInfo()->alloc(1);
                 getIntegerTypeInfo()->assign(z->re, &re);
                 getIntegerTypeInfo()->assign(z->im, &im);
-                push_back(v, z);
+                pushBack(v, z);
             } else if (c == '-') {
-                ErrorInfo *err = pop_back(v);
+                ErrorInfo *err = popBack(v);
                 if (err != getSuccessResult()) {
                     printf("%s\n", err->msg);
                     return 0;
@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
         printf("\nGreat! Here's your vector:\n");
         print(v);
 
-        vector *filtered = (vector *) where(v, is_re)->result;
+        vector *filtered = (vector *) where(v, isRe)->result;
         printf("\nFiltered to leave only real numbers:\n");
         print(filtered);
 
