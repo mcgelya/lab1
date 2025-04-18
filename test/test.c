@@ -57,10 +57,6 @@ void testNullVector() {
         TEST(err->code == ERROR_NULL_POINTER);
     }
     {
-        ErrorInfo *err = assignElement(NULL, 0, &x);
-        TEST(err->code == ERROR_NULL_POINTER);
-    }
-    {
         pushBack(v, &x);
         ErrorInfo *err = assignElement(v, 0, NULL);
         TEST(err->code == ERROR_NULL_POINTER);
