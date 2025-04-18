@@ -1,6 +1,4 @@
-.vscode/
 out/
-src/bin/
-test/bin
 .clang-format
 .clangd
+.DS_store

@@ -3,7 +3,6 @@
 #include "example.h"
 #include "integer.h"
 #include "vector.h"
-#include <assert.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -42,7 +41,7 @@ int main(int argc, char *argv[]) {
         vector *conc = (vector *) concatVectors(filtered, mp)->result;
         printf("\nConcatenated these vectors:\n");
         print(conc);
-    } else {
+    } else if (argc == 2 && strcmp("comp", argv[1]) == 0) {
         vector *v = (vector *) emptyVector(getComplexOnIntegerTypeInfo())->result;
         printf("Let's play. Enter '+ re im' to push_back re + i * im, '-' to pop_back, or '!' to quit:\n");
         while (true) {
@@ -79,5 +78,7 @@ int main(int argc, char *argv[]) {
         vector *conc = (vector *) concatVectors(filtered, mp)->result;
         printf("\nConcatenated these vectors:\n");
         print(conc);
+    } else {
+        printf("MODE should be int or comp\n");
     }
 }

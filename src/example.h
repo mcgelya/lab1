@@ -14,4 +14,4 @@ void inc(void *dest, const void *source);
 
 void negate(void *dest, const void *source);
 
-void conjugate(void *dest, const void *source);
+void conjugate(void *dest, const void *source); // сопряженное для комплов

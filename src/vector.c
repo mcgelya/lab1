@@ -2,26 +2,6 @@
 #include <assert.h>
 #include <stdio.h>
 
-ResultInfo *emptyVector(const TypeInfo *argType) {
-    ResultInfo *res = malloc(sizeof(ResultInfo));
-    if (argType == NULL) {
-        ErrorInfo *err = malloc(sizeof(ErrorInfo));
-        err->code = ERROR_NULL_POINTER;
-        err->msg = "Error: Null pointer to argType.";
-        res->result = NULL;
-        res->error = err;
-        return res;
-    }
-    vector *vec = malloc(sizeof(vector));
-    vec->start = argType->alloc(1);
-    vec->size = 0;
-    vec->capacity = 1;
-    vec->argType = argType;
-    res->result = (void *) vec;
-    res->error = getSuccessResult();
-    return res;
-}
-
 ResultInfo *nElementsVector(size_t n, const TypeInfo *argType) {
     ResultInfo *res = malloc(sizeof(ResultInfo));
     if (argType == NULL) {
@@ -33,13 +13,21 @@ ResultInfo *nElementsVector(size_t n, const TypeInfo *argType) {
         return res;
     }
     vector *vec = malloc(sizeof(vector));
-    vec->start = argType->alloc(n);
     vec->size = n;
-    vec->capacity = n;
+    if (n == 0) {
+        vec->capacity = 1;
+    } else {
+        vec->capacity = n;
+    }
+    vec->start = argType->alloc(vec->capacity);
     vec->argType = argType;
     res->result = (void *) vec;
     res->error = getSuccessResult();
     return res;
+}
+
+ResultInfo *emptyVector(const TypeInfo *argType) {
+    return nElementsVector(0, argType);
 }
 
 ErrorInfo *pushBack(vector *v, const void *source) {

@@ -1,11 +1,10 @@
 #include "integer.h"
 #include <stdio.h>
-#include <string.h>
 
 void assignInteger(void *destination, const void *source) {
-    Integer *destination_int = (Integer *) destination;
-    const Integer *source_int = (const Integer *) source;
-    destination_int->value = source_int->value;
+    Integer *destinationInt = (Integer *) destination;
+    const Integer *sourceInt = (const Integer *) source;
+    destinationInt->value = sourceInt->value;
 }
 
 size_t getSizeInteger() {
@@ -17,17 +16,17 @@ void *allocInteger(size_t n) {
 }
 
 bool eqOperatorInteger(const void *a, const void *b) {
-    const Integer *a_int = (const Integer *) a;
-    const Integer *b_int = (const Integer *) b;
-    return a_int->value == b_int->value;
+    const Integer *aInt = (const Integer *) a;
+    const Integer *bInt = (const Integer *) b;
+    return aInt->value == bInt->value;
 }
 
 void printInteger(const void *arg) {
-    const Integer *arg_int = (const Integer *) arg;
-    printf("%d", arg_int->value);
+    const Integer *argInt = (const Integer *) arg;
+    printf("%d", argInt->value);
 }
 
-static struct TypeInfo *integerType = NULL;
+static TypeInfo *integerType = NULL;
 
 const TypeInfo *getIntegerTypeInfo() {
     if (integerType == NULL) {
