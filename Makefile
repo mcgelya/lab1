@@ -6,4 +6,4 @@ tests:
 cli:
 	mkdir -p out
 	gcc -std=c17 src/main.c src/complex.c src/integer.c src/error_info.c src/vector.c src/complex_on_integer.c src/example.c -o out/main.o
-	./out/main.o $(MODE)
+	./out/main.o
