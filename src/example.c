@@ -37,8 +37,26 @@ void negate(void *dest, const void *source) {
 }
 
 void conjugate(void *dest, const void *source) {
-    Complex *dest_comp = (Complex *) dest;
-    const Complex *source_comp = (const Complex *) source;
-    getIntegerTypeInfo()->assign(dest_comp->re, source_comp->re);
-    negate(dest_comp->im, source_comp->im);
+    Complex *destComp = (Complex *) dest;
+    const Complex *sourceComp = (const Complex *) source;
+    getIntegerTypeInfo()->assign(destComp->re, sourceComp->re);
+    negate(destComp->im, sourceComp->im);
+}
+
+void getRe(void *dest, const void *source) {
+    Complex *desComp = (Complex *) dest;
+    const Complex *sourceComp = (const Complex *) source;
+    getIntegerTypeInfo()->assign(desComp->re, sourceComp->re);
+    Integer x;
+    x.value = 0;
+    getIntegerTypeInfo()->assign(desComp->im, &x);
+}
+
+void getIm(void *dest, const void *source) {
+    Complex *desComp = (Complex *) dest;
+    const Complex *sourceComp = (const Complex *) source;
+    Integer x;
+    x.value = 0;
+    getIntegerTypeInfo()->assign(desComp->re, &x);
+    getIntegerTypeInfo()->assign(desComp->im, sourceComp->im);
 }

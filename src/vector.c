@@ -186,6 +186,10 @@ const ErrorInfo *print(const vector *v) {
     if (v == NULL) {
         return getErrorInfo(ERROR_NULL_POINTER, "Error: Null pointer to vector.");
     }
+    if (v->size == 0) {
+        printf("Empty vector\n");
+        return getSuccessInfo();
+    }
     size_t width = v->argType->getSize();
     char *ptr = (char *) v->start;
     for (size_t i = 0; i < v->size; ++i) {
