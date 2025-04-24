@@ -11,12 +11,13 @@ typedef enum {
 
 typedef struct ErrorInfo {
     ErrorCode code;
-    char *msg;
+    const char *msg;
 } ErrorInfo;
 
-ErrorInfo *getSuccessResult();
+const ErrorInfo *getSuccessInfo();
+const ErrorInfo *getErrorInfo(ErrorCode code, const char *msg);
 
 typedef struct ResultInfo {
     void *result;
-    ErrorInfo *error;
+    const ErrorInfo *error;
 } ResultInfo;

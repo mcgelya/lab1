@@ -10,15 +10,14 @@
 int failedTests = 0;
 int okTests = 0;
 
-#define TEST(cond)                                                                                  \
-    do {                                                                                            \
-        if (!(cond)) {                                                                              \
-            printf("Assertion failed: %s\nIn function: %s (line %d)\n", #cond, __func__, __LINE__); \
-            ++failedTests;                                                                          \
-        } else {                                                                                    \
-            printf("%s is OK.\n", #cond);                                                           \
-            ++okTests;                                                                              \
-        }                                                                                           \
+#define TEST(cond)                                                                             \
+    do {                                                                                       \
+        if (!(cond)) {                                                                         \
+            printf("Test failed: %s\nIn function: %s (line %d)\n", #cond, __func__, __LINE__); \
+            ++failedTests;                                                                     \
+        } else {                                                                               \
+            ++okTests;                                                                         \
+        }                                                                                      \
     } while (0)
 
 void testNullArgType() {
@@ -37,15 +36,15 @@ void testNullVector() {
     Integer x;
     x.value = 1;
     {
-        ErrorInfo *err = pushBack(NULL, &x);
+        const ErrorInfo *err = pushBack(NULL, &x);
         TEST(err->code == ERROR_NULL_POINTER);
     }
     {
-        ErrorInfo *err = pushBack(v, NULL);
+        const ErrorInfo *err = pushBack(v, NULL);
         TEST(err->code == ERROR_NULL_POINTER);
     }
     {
-        ErrorInfo *err = popBack(NULL);
+        const ErrorInfo *err = popBack(NULL);
         TEST(err->code == ERROR_NULL_POINTER);
     }
     {
@@ -53,12 +52,12 @@ void testNullVector() {
         TEST(res->error->code == ERROR_NULL_POINTER);
     }
     {
-        ErrorInfo *err = assignElement(NULL, 0, &x);
+        const ErrorInfo *err = assignElement(NULL, 0, &x);
         TEST(err->code == ERROR_NULL_POINTER);
     }
     {
         pushBack(v, &x);
-        ErrorInfo *err = assignElement(v, 0, NULL);
+        const ErrorInfo *err = assignElement(v, 0, NULL);
         TEST(err->code == ERROR_NULL_POINTER);
     }
     {
@@ -82,7 +81,7 @@ void testNullVector() {
         TEST(res->error->code == ERROR_NULL_POINTER);
     }
     {
-        ErrorInfo *err = print(NULL);
+        const ErrorInfo *err = print(NULL);
         TEST(err->code == ERROR_NULL_POINTER);
     }
     {
@@ -100,7 +99,7 @@ void testOutOfBounds() {
     Integer x;
     x.value = 1;
     {
-        ErrorInfo *err = popBack(v);
+        const ErrorInfo *err = popBack(v);
         TEST(err->code == ERROR_OUT_OF_BOUNDS);
     }
     {
@@ -109,7 +108,7 @@ void testOutOfBounds() {
         TEST(res->error->code == ERROR_OUT_OF_BOUNDS);
     }
     {
-        ErrorInfo *err = assignElement(v, 1, &x);
+        const ErrorInfo *err = assignElement(v, 1, &x);
         TEST(err->code == ERROR_OUT_OF_BOUNDS);
     }
 }

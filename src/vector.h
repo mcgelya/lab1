@@ -15,11 +15,11 @@ typedef struct vector {
 ResultInfo *emptyVector(const TypeInfo *argType);
 ResultInfo *nElementsVector(size_t n, const TypeInfo *argType);
 
-ErrorInfo *pushBack(vector *v, const void *source);
-ErrorInfo *popBack(vector *v);
+const ErrorInfo *pushBack(vector *v, const void *source);
+const ErrorInfo *popBack(vector *v);
 
 ResultInfo *getElement(const vector *v, size_t i);
-ErrorInfo *assignElement(vector *v, size_t i, const void *source);
+const ErrorInfo *assignElement(vector *v, size_t i, const void *source);
 
 ResultInfo *map(const vector *v, UnaryOperator func);
 
@@ -28,4 +28,4 @@ ResultInfo *where(const vector *v, Predicate pred);
 
 ResultInfo *concatVectors(const vector *first, const vector *second);
 
-ErrorInfo *print(const vector *v);
+const ErrorInfo *print(const vector *v);

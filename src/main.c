@@ -23,8 +23,8 @@ int main() {
                     scanf("%d", &x.value);
                     pushBack(v, &x);
                 } else if (c == '-') {
-                    ErrorInfo *err = popBack(v);
-                    if (err != getSuccessResult()) {
+                    const ErrorInfo *err = popBack(v);
+                    if (err->code != ERROR_OK) {
                         printf("%s\n", err->msg);
                         return 0;
                     }
@@ -60,8 +60,8 @@ int main() {
                     getIntegerTypeInfo()->assign(z->im, &im);
                     pushBack(v, z);
                 } else if (c == '-') {
-                    ErrorInfo *err = popBack(v);
-                    if (err != getSuccessResult()) {
+                    const ErrorInfo *err = popBack(v);
+                    if (err->code != ERROR_OK) {
                         printf("%s\n", err->msg);
                         return 0;
                     }
