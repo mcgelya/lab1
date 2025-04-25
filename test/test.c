@@ -10,14 +10,14 @@
 int failedTests = 0;
 int okTests = 0;
 
-#define TEST(cond)                                                                             \
-    do {                                                                                       \
-        if (!(cond)) {                                                                         \
-            printf("Test failed: %s\nIn function: %s (line %d)\n", #cond, __func__, __LINE__); \
-            ++failedTests;                                                                     \
-        } else {                                                                               \
-            ++okTests;                                                                         \
-        }                                                                                      \
+#define TEST(cond)                                                                               \
+    do {                                                                                         \
+        if (!(cond)) {                                                                           \
+            printf("\nTest failed: %s\nIn function: %s (line %d)\n", #cond, __func__, __LINE__); \
+            ++failedTests;                                                                       \
+        } else {                                                                                 \
+            ++okTests;                                                                           \
+        }                                                                                        \
     } while (0)
 
 void testNullArgType() {
