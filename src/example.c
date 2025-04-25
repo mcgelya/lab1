@@ -44,19 +44,19 @@ void conjugate(void *dest, const void *source) {
 }
 
 void getRe(void *dest, const void *source) {
-    Complex *desComp = (Complex *) dest;
+    Complex *destComp = (Complex *) dest;
     const Complex *sourceComp = (const Complex *) source;
-    getIntegerTypeInfo()->assign(desComp->re, sourceComp->re);
+    getIntegerTypeInfo()->assign(destComp->re, sourceComp->re);
     Integer x;
     x.value = 0;
-    getIntegerTypeInfo()->assign(desComp->im, &x);
+    getIntegerTypeInfo()->assign(destComp->im, &x);
 }
 
 void getIm(void *dest, const void *source) {
-    Complex *desComp = (Complex *) dest;
+    Complex *destComp = (Complex *) dest;
     const Complex *sourceComp = (const Complex *) source;
     Integer x;
     x.value = 0;
-    getIntegerTypeInfo()->assign(desComp->re, &x);
-    getIntegerTypeInfo()->assign(desComp->im, sourceComp->im);
+    getIntegerTypeInfo()->assign(destComp->re, &x);
+    getIntegerTypeInfo()->assign(destComp->im, sourceComp->im);
 }

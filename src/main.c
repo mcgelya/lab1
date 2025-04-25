@@ -28,11 +28,19 @@ bool inputInteger(int l, int r, int *x) {
     scanf("%14s", buffer);
     long long val = 0;
     int length = strlen(buffer);
+    bool negate = 0;
     for (int i = 0; i < length; ++i) {
+        if (i == 0 && buffer[i] == '-') {
+            negate = 1;
+            continue;
+        }
         if (!isdigit(buffer[i])) {
             return false;
         }
         val = val * 10 + buffer[i] - '0';
+    }
+    if (negate) {
+        val *= -1;
     }
     if (val < l || val > r) {
         return false;
@@ -72,6 +80,10 @@ int playOneCycle(char mode) { // 0 is quit, 1 is ask for continue, 2 is continue
         filterFuncs = filterComplex;
         filterNames = filterComplexNames;
     }
+    if (availableVectors == MAX_VECTORS) {
+        printf("Already available max number of vectors. Try again with another mode!\n");
+        return 0;
+    }
     printf("\nAvailable options:\n"
            "1. Input new vector\n"
            "2. Map one of available vectors with one of available functions\n"
@@ -86,10 +98,6 @@ int playOneCycle(char mode) { // 0 is quit, 1 is ask for continue, 2 is continue
         return 1;
     }
     if (option == 1) {
-        if (availableVectors == MAX_VECTORS) {
-            printf("Already available max number of vectors. Try some operations with them!\n");
-            return 2;
-        }
         vector *vec = NULL;
         if (mode == 'i') {
             printf("\nInput your numbers. Enter '+ x' to push_back x, '-' to pop_back, or '!' to quit:\n");
@@ -105,14 +113,14 @@ int playOneCycle(char mode) { // 0 is quit, 1 is ask for continue, 2 is continue
                 if (mode == 'i') {
                     Integer x;
                     if (!inputInteger(-MAX_INTEGER, MAX_INTEGER, &x.value)) {
-                        printf("Overflow or incorrect integer!\n");
+                        printf("Input too large!\n");
                         return 1;
                     }
                     pushBack(vec, &x);
                 } else {
                     Integer re, im;
                     if (!inputInteger(-MAX_INTEGER, MAX_INTEGER, &re.value) || !inputInteger(-MAX_INTEGER, MAX_INTEGER, &im.value)) {
-                        printf("Overflow or incorrect integer!\n");
+                        printf("Input too large!\n");
                         return 1;
                     }
                     Complex *z = getComplexOnIntegerTypeInfo()->alloc(1);
